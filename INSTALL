@@ -1,0 +1,16 @@
+Dicas:
+ - Installar dependencias de binarios via "apt-get install" e "apt-cache search" ( irao surgir varias)
+ - Instalar dependencias de pacotes Python via "pip install"
+ - Trabalhar com um ambiente apenas para o projeto( nao conflitar versoes e libs python com outros programas)
+
+Instalando o enviroment:
+
+  $ git clone URL_DO_GIT
+  $ cd PROJETO
+  $ mkvirtualenv ephemeral
+  $ workon ephemeral
+  $ apt-get install python-pip
+
+Instalando dependencias do projeto:
+
+$ pip install -r requirements.txt
