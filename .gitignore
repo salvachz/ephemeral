@@ -1,2 +1,3 @@
 ephemeral/apps/generic/models/*.pyc
+ephemeral/apps/generic/migrations
 */*.pyc
