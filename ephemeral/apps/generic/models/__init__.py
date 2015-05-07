@@ -1,4 +1,5 @@
 import os
+
 to_the_end = []
 for module in os.listdir(os.path.dirname(__file__)):
     if module == '__init__.py' or module[-3:] != '.py':
@@ -13,4 +14,3 @@ try:
     del module, to_the_end, the_end
 except:
     pass
-
