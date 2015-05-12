@@ -4,21 +4,21 @@
 	{% for produto in features_items %}
 	<div class="col-sm-4">
 		<div class="product-image-wrapper">
-			<div class="single-products">
+			<a class="single-products" href="/produto/{{produto.slug}}">
 				<div class="productinfo text-center">
 				<img src="{{ produto.image.url }}" alt="" />
 					<h2>R${{produto.preco}}</h2>
 					<p>{{produto.nome}}</p>
 					<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add ao carrinho</a>
 				</div>
-				<div class="product-overlay">
+				<!--div class="product-overlay">
 					<div class="overlay-content">
 						<h2>{{produto.preco}}</h2>
 						<p>{{produto.nome}}</p>
 						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add ao carrinho</a>
 					</div>
-				</div>
-			</div>
+				</div-->
+			</a>
 			<div class="choose">
 				<ul class="nav nav-pills nav-justified">
 					<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>

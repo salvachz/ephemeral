@@ -22,7 +22,7 @@ class Produto(models.Model):
         db_table = 'Produto'
 
     def __unicode__(self):
-        return self.nome
+        return self.slug
 
     def save(self, *args, **kwargs):
         super(Produto, self).save(*args, **kwargs)

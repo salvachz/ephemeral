@@ -9,6 +9,7 @@ admin.site.register([
 	genericModels.Produto,
 	genericModels.Categoria,
 	genericModels.Marca,
+    genericModels.Usuario,
 ])
 admin.autodiscover()
 

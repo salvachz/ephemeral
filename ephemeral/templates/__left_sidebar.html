@@ -18,7 +18,7 @@
 			<div class="brands-name">
 				<ul class="nav nav-pills nav-stacked">
 					{%for marca in brands%}
-					<li><a href="#"> <span class="pull-right">(50)</span>{{marca.nome}}</a></li>
+					<li><a href="#"> <span class="pull-right">({{marca.total}})</span>{{marca.nome}}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
