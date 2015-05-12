@@ -15,6 +15,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', genericViews.HomeView.as_view(), name='home'),
+    url(r'^produto/(?P<slug>.*)$', genericViews.ProductDetailView.as_view(), name='detail'),
 )
 
 
