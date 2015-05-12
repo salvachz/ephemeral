@@ -15,13 +15,13 @@
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="images/product-details/1.jpg" alt="" />
+								<img src="/{{produto.image.url}}" alt="" />
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
 								
 								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
+								    <!--div class="carousel-inner">
 										<div class="item active">
 										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
 										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
@@ -52,23 +52,23 @@
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-								<p>Web ID: 1089772</p>
-								<img src="images/product-details/rating.png" alt="" />
+								<img src="{% version 'images/product-details/new.jpg' %}" class="newarrival" alt="" />
+								<h2>{{produto.nome}}</h2>
+								<p>Web ID: {{produto.id}}</p>
+								<img src="{% version 'images/product-details/rating.png' %}" alt="" />
 								<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
+									<span>R${{produto.preco}}</span>
+									<label>Quantidade:</label>
+									<input type="text" value="1" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
-										Add to cart
+										Adicionar ao carrinho
 									</button>
 								</span>
-								<p><b>Availability:</b> In Stock</p>
-								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b> E-SHOPPER</p>
-								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+								<p><b>Disponibilidade:</b>Em Estoque</p>
+								<p><b>Estado:</b> Novo</p>
+								<p><b>Marca:</b> {{produto.marca.nome}}</p>
+								<a href=""><img src="{% version 'images/product-details/share.png'%}" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
