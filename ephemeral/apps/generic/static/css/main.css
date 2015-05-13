@@ -2520,4 +2520,19 @@ h2.title {
   color: #FE980F;
 }
 
+/* Ephemeral modification */
+.filter-list li{
+  list-style: none;
+  padding: 0.5em 0.3em;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.5em;
+  display: inline;
+  margin-left: 5px;
+}
+
+.filter-list li a{
+  margin-left: 0.3em;
+  padding: 0.3em;
+}
+
 

@@ -7,11 +7,10 @@ from apps.generic.views import EphemeralTemplateView
 class ProductDetailView(EphemeralTemplateView):
     template_name = "product-detail.html"
 
-    def get(self, *args, **kwargs):
-        print args, kwargs
+    def get(self, request, **kwargs):
         try:
             slug = kwargs['slug']
             kwargs['produto'] = Produto.objects.get(slug=slug)
         except:
         	return render(args[0],template_name='404.html',status=404)
-        return super(ProductDetailView, self).get(*args, **kwargs)
+        return super(ProductDetailView, self).get(request, **kwargs)

@@ -1,3 +1,5 @@
+{% load filterUrl %}
+{% setfilter filtro %}
 <div class="col-sm-3">
 	<div class="left-sidebar">
 		{% if categorys %}
@@ -6,7 +8,7 @@
 			{% for categoria in categorys %}
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4 class="panel-title"><a href="#">{{categoria.nome}}</a></h4>
+					<h4 class="panel-title"><a href="/{{categoria|filter_url:'categoria'}}">{{categoria.nome}}</a></h4>
 				</div>
 			</div>
 			{% endfor %}
@@ -18,7 +20,7 @@
 			<div class="brands-name">
 				<ul class="nav nav-pills nav-stacked">
 					{%for marca in brands%}
-					<li><a href="#"> <span class="pull-right">({{marca.total}})</span>{{marca.nome}}</a></li>
+					<li><a href="/{{marca|filter_url:'marca'}}"> <span class="pull-right">({{marca.total}})</span>{{marca.nome}}</a></li>
 					{% endfor %}
 				</ul>
 			</div>

@@ -1,0 +1,13 @@
+{% if filtro %}
+{% load filterUrl %}
+{% setfilter filtro %}
+<div class="row">
+    <div clas="col-md-12" style="padding:1em 0">
+        <ul class="filter-list">
+        {% for tipo,item in filtro.items %}
+            <li>{{ item.nome }}<a href="/{{''|filter_url:tipo}}">x</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
