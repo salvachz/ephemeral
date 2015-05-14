@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 class EphemeralTemplateView(TemplateView):
 
     def get(self, *args, **kwargs):
+       kwargs['filtro'] = kwargs.get('filtro',{})
        kwargs['features_items'] = Produto.objects.filter(**kwargs['filtro'])
        kwargs['categorys'] = Categoria.get_quantified()
        kwargs['brands'] = Marca.get_quantified()
@@ -24,5 +25,4 @@ class EphemeralTemplateView(TemplateView):
             retorno['categoria'] = categoria
         if marca:
             retorno['marca']= marca
-        print retorno
         return retorno
