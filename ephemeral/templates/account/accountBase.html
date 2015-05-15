@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load assets %}
+{% block body %}
+<body>
+
+    {% include "partial/__content_header.html" %}
+    
+    
+    <section>
+        <div class="container">
+            <div class="row">
+                
+                {% include 'partial/__account_sidebar.html' %}
+                
+                <div class="col-sm-9 padding-right container">
+                {% block content%}
+                {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% include 'partial/__footer.html' %}
+
+</body>
+{%endblock body %}
+</html>

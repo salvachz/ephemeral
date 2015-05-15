@@ -3,26 +3,26 @@
 {% block body %}
 <body>
 
-	{% include "__content_header.html" %}
-	{% include "__slider.html" %}
+	{% include "partial/__content_header.html" %}
+	{% include "partial/__slider.html" %}
 	
 	
 	<section>
 		<div class="container">
-		{% include '__filter_bar.html' %}
+		{% include 'partial/__filter_bar.html' %}
 			<div class="row">
 				
-				{% include '__left_sidebar.html' %}
+				{% include 'partial/__left_sidebar.html' %}
 				
 				<div class="col-sm-9 padding-right">
-					{% include '__features_items.html' %}
-					{% include '__recommended_items.html' %}
+					{% include 'partial/__features_items.html' %}
+					{% include 'partial/__recommended_items.html' %}
 				</div>
 			</div>
 		</div>
 	</section>
 	
-	{% include '__footer.html' %}
+	{% include 'partial/__footer.html' %}
 
 </body>
 {%endblock body %}

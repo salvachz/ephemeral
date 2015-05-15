@@ -52,6 +52,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.core.files.uploadhandler.MemoryFileUploadHandler',
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+    'apps.account.middleware.RequireLoginMiddleware',
+)
+
+LOGIN_URL = '/login/'
+
+# PUBLIC_URLS = (
+#     r'/api/auth'
+# )
+
+LOGIN_REQUIRED_URLS = (
+    r'^/conta/*$',
 )
 
 ROOT_URLCONF = 'urls'

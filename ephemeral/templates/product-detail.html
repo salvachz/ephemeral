@@ -3,13 +3,13 @@
 {% block body %}
 <body>
 
-	{% include "__content_header.html" %}
+	{% include "partial/__content_header.html" %}
 	
 	
 	<section>
 		<div class="container">
 			<div class="row">
-				{% include '__left_sidebar.html' %}
+				{% include 'partial/__left_sidebar.html' %}
 				
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
@@ -19,28 +19,6 @@
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides -->
-								    <!--div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										
-									</div>
-
-								  <!-- Controls -->
 								  <a class="left item-control" href="#similar-product" data-slide="prev">
 									<i class="fa fa-angle-left"></i>
 								  </a>
@@ -263,14 +241,14 @@
 						</div>
 					</div><!--/category-tab-->
 					
-					{% include '__recommended_items.html' %}
+					{% include 'partial/__recommended_items.html' %}
 					
 				</div>
 			</div>
 		</div>
 	</section>
 	
-	{% include '__footer.html' %}
+	{% include 'partial/__footer.html' %}
 </body>
 {%endblock body %}
 </html>
