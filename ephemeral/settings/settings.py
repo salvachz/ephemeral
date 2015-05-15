@@ -83,6 +83,7 @@ TEMPLATE_DIRS = [
 
 WSGI_APPLICATION = 'settings.wsgi.application'
 
+AUTH_USER_MODEL = 'generic.Usuario'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

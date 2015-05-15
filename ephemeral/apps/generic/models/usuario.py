@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 
 class Usuario(AbstractBaseUser):
     email = models.CharField(db_column='usrMail', max_length=255, unique=True)
-    nome = models.CharField(db_column='usrName', max_length=65)
+    name = models.CharField(db_column='usrName', max_length=65)
     linguaguem = models.CharField(db_column='usrLanguage', choices=( (x,x) for x in ('Portugues','Inglish')), default='Portugues',max_length=30)
     status = models.CharField(db_column='usrStatus', choices=( (x,x) for x in ('Ativo','Inativo')), default='Ativo',max_length=30)
     last_access_ip = models.CharField(db_column='usrLastAccessIP', max_length=45)
@@ -50,4 +50,24 @@ class Usuario(AbstractBaseUser):
 
     class Meta:
         db_table = 'Usuario'
+
+    def get_full_name(self):
+        return self.name
+
+    def get_short_name(self):
+        return self.name.split()[0]
+
+    @property
+    def is_superuser(self):
+        return self.is_admin
+
+    @property
+    def is_staff(self):
+        return self.is_admin
+
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return self.is_admin
 

@@ -8,9 +8,8 @@ default_error_message = {
 }
 
 class RegistryForm(forms.ModelForm):
-    # name = forms.CharField(label='Nome', max_length=100,error_messages=my_default_errors)
-    # email = forms.CharField(label='Email',error_messages=my_default_errors)
-    # password = forms.CharField(widget=forms.PasswordInput(),error_messages=my_default_errors)
+
+
     class Meta:
         model = Usuario
         exclude = ('status','is_admin','last_access_ip','last_login')
