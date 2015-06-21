@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load assets %}
+{% block body %}
+<body>
+
+	{% include "partial/__content_header.html" %}
+	
+	
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<form action="/finalizar/" method="post">
+				<table class="table table-condensed" id"cart-table">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="table-data">
+					{% for product in products %}
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="/{{product.image.url}}" alt=""></a>
+							</td>
+							<td class="cart_description">
+							<input type="hidden" name="product[]" value="{{product.id}}">
+								<h4><a href="">{{product.nome}}</a></h4>
+								<p class="pdt-id" >Web ID: {{product.id}}</p>
+							</td>
+							<td class="cart_price">
+								<p>R${{product.preco}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									
+									<input class="cart_quantity_input" type="number" name="quantity[{{product.id}}]" value="{{cart|dictionary:product.id}}" min="1" max="99" required="true">
+									
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">R${{cart|dictionary:product.id|multiply:product.preco}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						{% endfor %}
+						<tr>
+							<td colspan="6">
+								<button class="fa" style="margin:auto; display:block" type="submit"> Finalizar
+								</button>
+							</td>
+						</tr>
+
+						
+					</tbody>
+				</table>
+				</form>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	{% include 'partial/__footer.html' %}
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.cart_quantity_delete').bind('click',function(){
+				var to_rm = $(this).parent().parent();
+				to_rm.remove();
+			});
+
+			$('.cart_quantity_input').bind('change',function(){
+				var pai = $(this).parent().parent().parent();
+				var preco = pai.children('.cart_price').children('p');
+				var valor = preco.html().replace('R$','');
+				var qnt = $(this).val();
+				console.log(qnt);
+				var total = pai.children('td.cart_total').children('p.cart_total_price');
+				console.log(total.html());
+				total.html('R$'+parseFloat(valor * qnt).toFixed(2));
+				
+			});
+
+			$('#table-data tr').each(function(k,v){
+				console.log($(v).children('pdt-id').val());
+			})
+		});
+		</script>
+
+</body>
+{% endblock body %}

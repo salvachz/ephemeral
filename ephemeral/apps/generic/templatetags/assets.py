@@ -33,5 +33,25 @@ def aklogo(path, imgid):
         # raise
         return ''
 
+def dictionary(dict, key):    
+    try:
+        return dict[key]
+    except KeyError:
+        try:
+            return dict[str(key)]
+        except:
+            print 'error on dictionary: ',dict,key
+            return ''
+
+def multiply(value1, value2):
+    if not value1 or not value2:
+        return -1
+    return float(value1) * float(value2)
+
+def ortag(value1, value2):
+    return value1 or value2
+
 register.simple_tag(version)
 register.filter(aklogo)
+register.filter(dictionary)
+register.filter(multiply)

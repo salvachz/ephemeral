@@ -29,16 +29,19 @@
 
 						</div>
 						<div class="col-sm-7">
+						<form action="/carrinho/" method="POST">
+						{% csrf_token %}
 							<div class="product-information"><!--/product-information-->
 								<img src="{% version 'images/product-details/new.jpg' %}" class="newarrival" alt="" />
 								<h2>{{produto.nome}}</h2>
 								<p>Web ID: {{produto.id}}</p>
+								<input type="hidden" value="{{produto.id}}" name="product">
 								<img src="{% version 'images/product-details/rating.png' %}" alt="" />
 								<span>
 									<span>R${{produto.preco}}</span>
 									<label>Quantidade:</label>
-									<input type="text" value="1" />
-									<button type="button" class="btn btn-fefault cart">
+									<input name="qnt" type="number" value="1" />
+									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Adicionar ao carrinho
 									</button>
@@ -48,6 +51,7 @@
 								<p><b>Marca:</b> {{produto.marca.nome}}</p>
 								<a href=""><img src="{% version 'images/product-details/share.png'%}" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
+						</form>
 						</div>
 					</div><!--/product-details-->
 					

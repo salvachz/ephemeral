@@ -20,8 +20,10 @@ urlpatterns = patterns('',
     url(r'^conta/', include(accountUrls)),
     url(r'^login/$', genericViews.LoginView.as_view(), name='login'),
     url(r'^registro/$', genericViews.RegistryView.as_view(), name='registry'),
+    url(r'^carrinho/$', genericViews.CartView.as_view(), name='cart'),
     url(r'^$', genericViews.HomeView.as_view(), name='home'),
     url(r'^produto/(?P<slug>.*)$', genericViews.ProductDetailView.as_view(), name='detail'),
+
 )
 
 

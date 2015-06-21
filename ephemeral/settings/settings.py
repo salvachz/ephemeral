@@ -68,6 +68,10 @@ LOGIN_REQUIRED_URLS = (
 ROOT_URLCONF = 'urls'
 
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+#SESSION_SERIALIZER='django.contrib.sessions.serializers.JSONSerializer'
+SESSION_SAVE_EVERY_REQUEST=True
+
 # Template URLs
 ## http://designscrazed.org/best-html-ecommerce-website-templates/
 ## http://demo.themeum.com/html/eshopper/
