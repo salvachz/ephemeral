@@ -12,6 +12,7 @@ class LoginView(EphemeralTemplateView):
         if request.user.is_authenticated():
             return HttpResponseRedirect('/conta/')
         kwargs['show_slider'] = False
+        kwargs['togo'] = request.GET.get('togo','')
         kwargs['show_recommended'] = False
         kwargs['registryForm'] = RegistryForm()
         kwargs['loginForm'] = LoginForm()
@@ -27,5 +28,7 @@ class LoginView(EphemeralTemplateView):
             user = authenticate(email=loginForm.cleaned_data['email'], password=loginForm.cleaned_data['password'])
             if user and user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/conta/')
+                    url = request.POST.get('togo',False)
+                    togo = '/conta/' if not url else url
+                    return HttpResponseRedirect(togo)
         return EphemeralTemplateView.get(self, request, **kwargs)

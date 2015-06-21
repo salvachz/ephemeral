@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.utils.http import urlquote
 
 
 import re
@@ -12,4 +13,6 @@ class RequireLoginMiddleware(object):
     def process_request(self, request, format=None):
         for url in self.urls:
             if url.match(request.path) and request.user.is_anonymous():
-                return HttpResponseRedirect(settings.LOGIN_URL)
+                print urlquote(request.path)
+                return HttpResponseRedirect(
+                    "%s?togo=%s" % (settings.LOGIN_URL, urlquote(request.path)))

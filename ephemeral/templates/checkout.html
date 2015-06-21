@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load assets %}
+{% block body %}
+<body>
+
+	{% include "partial/__content_header.html" %}
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<a class="btn btn-primary">Pagar com Boleto</a>
+					<a class="btn btn-primary">Pagar com Cartao</a>
+				</div>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+	{% include 'partial/__footer.html' %}
+
+</body>
+{%endblock body %}
+</html>

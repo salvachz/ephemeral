@@ -15,7 +15,8 @@
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
-				<form action="/finalizar/" method="post">
+				<form action="/conta/finalizar/" method="post">
+				{% csrf_token %}
 				<table class="table table-condensed" id"cart-table">
 					<thead>
 						<tr class="cart_menu">

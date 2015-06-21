@@ -24,7 +24,6 @@ class CartView(EphemeralTemplateView):
             if product_id not in request.session['cart']:
                 request.session['cart'][product_id] = product_qnt
             else:
-                print 'caiu no else'
                 request.session['cart'][product_id] = int(request.session['cart'][product_id])+product_qnt
         request.session.modfied = True
         return self.get(request, **kwargs)
