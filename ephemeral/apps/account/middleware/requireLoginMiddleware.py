@@ -15,4 +15,5 @@ class RequireLoginMiddleware(object):
             if url.match(request.path) and request.user.is_anonymous():
                 print urlquote(request.path)
                 return HttpResponseRedirect(
-                    "%s?togo=%s" % (settings.LOGIN_URL, urlquote(request.path)))
+                    "%s?togo=%s" % (settings.LOGIN_URL, urlquote(request.path))
+                )

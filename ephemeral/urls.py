@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^login/$', genericViews.LoginView.as_view(), name='login'),
     url(r'^registro/$', genericViews.RegistryView.as_view(), name='registry'),
     url(r'^carrinho/$', genericViews.CartView.as_view(), name='cart'),
+    url(r'^desejo/$', genericViews.WishlistView.as_view(), name='wishlist'),
+    url(r'^produtos/$', genericViews.ProductListView.as_view(), name='productList'),
     url(r'^$', genericViews.HomeView.as_view(), name='home'),
     url(r'^produto/(?P<slug>.*)$', genericViews.ProductDetailView.as_view(), name='detail'),
 

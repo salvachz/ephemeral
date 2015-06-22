@@ -41,11 +41,15 @@
 									<span>R${{produto.preco}}</span>
 									<label>Quantidade:</label>
 									<input name="qnt" type="number" value="1" />
+								</span>
+									<button type="button" onClick="var f = this.form; f.action = '/desejo/';f.submit();" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add lista de Desejo
+									</button>
 									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Adicionar ao carrinho
 									</button>
-								</span>
 								<p><b>Disponibilidade:</b>Em Estoque</p>
 								<p><b>Estado:</b> Novo</p>
 								<p><b>Marca:</b> {{produto.marca.nome}}</p>
