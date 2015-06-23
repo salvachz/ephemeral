@@ -4,12 +4,13 @@
 	{% for produto in features_items %}
 	<div class="col-sm-4">
 		<div class="product-image-wrapper">
+		 <a class="single-products" href="/produto/{{produto.slug}}">
 			<div class="single-products" href="/produto/{{produto.slug}}">
 				<div class="productinfo text-center">
 				<img src="/{{ produto.image.url }}" alt="">
 					<h2>R${{produto.preco}}</h2>
 					<p>{{produto.nome}}</p>
-						<a onClick="add_cart({{produto.id}},1)" class="btn btn-default add-to-cart">
+						<a onClick="add_cart_or_wish({{produto.id}},1,'/carrinho/')" class="btn btn-default add-to-cart">
 															<i class="fa fa-shopping-cart"></i>Add ao carrinho
 						</a>
 				</div>
@@ -23,37 +24,14 @@
 			</div>
 			<div class="choose">
 				<ul class="nav nav-pills nav-justified">
-					<li><a href="#" onClick="this.getElementsByTagName('form')[0].submit();return false;">
-						<form action="/desejo/" method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="product" value="{{produto.id}}">
-						<input type="hidden" name="qnt" value="1">
-						
-						</form>
+					<li><a href="#" onClick="add_cart_or_wish({{produto.id}},1,'/desejo/')">
 					<i class="fa fa-plus-square"></i>Add a lista de Desejo</a></li>
 					
 				</ul>
 			</div>
+		  </a>
 		</div>
 	</div>
 	{% endfor %}					
 </div><!--features_items-->
 {% endif %}
-<script type="text/javascript">
-	function add_cart(id, qnt){
-		var f = document.createElement('form');
-		f.action = '/carrinho/';
-		f.method = 'POST';
-		f.appendChild(make_input('product', id));
-		f.appendChild(make_input('qnt', qnt));
-		f.appendChild(make_input('csrfmiddlewaretoken','{{ csrf_token }}'));
-		f.submit();
-		console.log(f);
-	}
-	function make_input(name, value){
-		var input = document.createElement('input');
-		input.name = name;
-		input.value = value;
-		return input;
-	}
-</script>

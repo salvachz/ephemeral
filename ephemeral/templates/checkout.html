@@ -7,16 +7,73 @@
 
 	<section id="cart_items">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<a class="btn btn-primary">Pagar com Boleto</a>
-					<a class="btn btn-primary">Pagar com Cartao</a>
-				</div>
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">Carrinho</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<form action="/conta/finalizar/" method="post">
+				{% csrf_token %}
+				<table class="table table-condensed" id"cart-table">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="table-data">
+					{% for product in products %}
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="/{{product.image.url}}" alt=""></a>
+							</td>
+							<td class="cart_description">
+							<input type="hidden" name="product[]" value="{{product.id}}">
+								<h4><a href="">{{product.nome}}</a></h4>
+								<p class="pdt-id" >Web ID: {{product.id}}</p>
+							</td>
+							<td class="cart_price">
+								<p>R${{product.preco}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									
+									<input class="cart_quantity_input" data-product="{{product.id}}" type="number" name="quantity[{{product.id}}]" value="{{cart|dictionary:product.id}}" min="1" max="99" required="true">
+									
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">R${{cart|dictionary:product.id|multiply:product.preco}}</p>
+							</td>
+							<td class="cart_delete">
+								<a data-qnt="{{cart|dictionary:product.id}}" data-product="{{product.id}}" class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						{% endfor %}
+						<tr>
+							<td colspan="6">
+								<button class="fa" style="margin:auto; display:block" type="submit"> Finalizar
+								</button>
+							</td>
+						</tr>
+
+						
+					</tbody>
+				</table>
+				</form>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
+
 	{% include 'partial/__footer.html' %}
 
+
 </body>
-{%endblock body %}
-</html>
+{% endblock body %}
+	{% include 'partial/__footer.html' %}

@@ -45,7 +45,7 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									
-									<input class="cart_quantity_input" type="number" name="quantity[{{product.id}}]" value="{{cart|dictionary:product.id}}" min="1" max="99" required="true">
+									<input class="cart_quantity_input" data-product="{{product.id}}" type="number" name="quantity[{{product.id}}]" value="{{cart|dictionary:product.id}}" min="1" max="99" required="true">
 									
 								</div>
 							</td>
@@ -53,7 +53,7 @@
 								<p class="cart_total_price">R${{cart|dictionary:product.id|multiply:product.preco}}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
+								<a data-qnt="{{cart|dictionary:product.id}}" data-product="{{product.id}}" class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 						{% endfor %}
@@ -75,26 +75,49 @@
 	{% include 'partial/__footer.html' %}
 		<script type="text/javascript">
 		$(document).ready(function(){
-			$('.cart_quantity_delete').bind('click',function(){
-				var to_rm = $(this).parent().parent();
-				to_rm.remove();
-			});
+			$('.cart_quantity_delete').bind('click',function(e){
+                var qnt = $(this).parent().parent().children('.cart_quantity_input').val();
+                var that = $(this);
+                console.log('sim')
+                $.ajax({
+                    method:'DELETE',
+                    url:'/carrinho/',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    data:{
+                        'product':$(this).data('product'),
+                        'qnt':$(this).data('qnt'),
+                    }
+                }).success(function(data){
+                    var to_rm = that.parent().parent();
+                    to_rm.remove();
+                })
+                e.preventdefault();
+            });
 
-			$('.cart_quantity_input').bind('change',function(){
-				var pai = $(this).parent().parent().parent();
-				var preco = pai.children('.cart_price').children('p');
-				var valor = preco.html().replace('R$','');
-				var qnt = $(this).val();
-				console.log(qnt);
-				var total = pai.children('td.cart_total').children('p.cart_total_price');
-				console.log(total.html());
-				total.html('R$'+parseFloat(valor * qnt).toFixed(2));
-				
-			});
-
-			$('#table-data tr').each(function(k,v){
-				console.log($(v).children('pdt-id').val());
-			})
+			    $('.cart_quantity_input').bind('change',function(){
+                var pai = $(this).parent().parent().parent();
+                var preco = pai.children('.cart_price').children('p');
+                var valor = preco.html().replace('R$','');
+                var qnt = $(this).val();
+                $.ajax({
+                    method:'PUT',
+                    url:'/carrinho/',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    data:{
+                        'product':$(this).data('product'),
+                        'qnt':qnt,
+                    }
+                }).success(function(data){
+                	var total = pai.children('td.cart_total').children('p.cart_total_price');
+                	total.html('R$'+parseFloat(valor * qnt).toFixed(2));
+                })
+                
+                
+            });
 		});
 		</script>
 

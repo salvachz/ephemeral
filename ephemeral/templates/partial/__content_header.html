@@ -87,6 +87,7 @@
 						<div class="search_box pull-right">
 							<input type="text" name="search" value="{{search}}" placeholder="Busca"/>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -104,4 +105,24 @@
 			})
 		});
 		</script>
+		<script type="text/javascript">
+	function add_cart_or_wish(id, qnt, action, from){
+		var f = document.createElement('form');
+		f.action = action;
+		f.method = 'POST';
+		if(from)
+			f.appendChild(make_input('from', from));
+		f.appendChild(make_input('product', id));
+		f.appendChild(make_input('qnt', qnt));
+		f.appendChild(make_input('csrfmiddlewaretoken','{{ csrf_token }}'));
+		f.submit();
+		console.log(f);
+	}
+	function make_input(name, value){
+		var input = document.createElement('input');
+		input.name = name;
+		input.value = value;
+		return input;
+	}
+</script>
 	</header><!--/header-->

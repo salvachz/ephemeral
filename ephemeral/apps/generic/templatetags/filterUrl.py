@@ -26,7 +26,7 @@ def setfilter(_filter):
         g_filter = _filter
     else:
         for k in _filter:
-        g_filter.update(k: _)
+            g_filter[k] = _filter[k]
     return ''
 
 

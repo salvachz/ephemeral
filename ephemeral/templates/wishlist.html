@@ -51,14 +51,8 @@
                                 <p class="cart_total_price">R$wish|dictionary:product.id|multiply:product.preco</p>
                             </td-->
                             <td class="cart_delete">
-                                <form action="/carrinho/" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="product" value="{{product.id}}">
-                                <input type="hidden" name="from" value="wishlist">
-                                <input type="hidden" name="qnt" value="{{wishlist|dictionary:product.id}}">
-                                    <button class="btn" style="margin-bottom:5%"><i class="fa fa-shopping-cart"></i> Carrinho</button>
-                                </form>
-                                <a class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
+                                <a onclick="add_cart_or_wish({{product.id}},1,'/carrinho/','wishlist')" class="btn" style="margin-bottom:5%"><i class="fa fa-shopping-cart"></i> Carrinho</a>
+                                <a class="cart_quantity_delete" data-qnt="{{wishlist|dictionary:product.id}}" data-product="{{product.id}}" href="#" onClick="return false"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -72,26 +66,28 @@
     {% include 'partial/__footer.html' %}
         <script type="text/javascript">
         $(document).ready(function(){
-            $('.cart_quantity_delete').bind('click',function(){
-                var to_rm = $(this).parent().parent();
-                to_rm.remove();
+            $('.cart_quantity_delete').bind('click',function(e){
+                var qnt = $(this).parent().parent().children('.cart_quantity_input').val();
+                var that = $(this);
+                console.log('sim')
+                $.ajax({
+                    method:'DELETE',
+                    url:'/desejo/',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    data:{
+                        'product':$(this).data('product'),
+                        'qnt':$(this).data('qnt'),
+                    }
+                }).success(function(data){
+                    var to_rm = that.parent().parent();
+                    to_rm.remove();
+                })
+                e.preventdefault();
             });
 
-            $('.cart_quantity_input').bind('change',function(){
-                var pai = $(this).parent().parent().parent();
-                var preco = pai.children('.cart_price').children('p');
-                var valor = preco.html().replace('R$','');
-                var qnt = $(this).val();
-                console.log(qnt);
-                var total = pai.children('td.cart_total').children('p.cart_total_price');
-                console.log(total.html());
-                total.html('R$'+parseFloat(valor * qnt).toFixed(2));
-                
-            });
 
-            $('#table-data tr').each(function(k,v){
-                console.log($(v).children('pdt-id').val());
-            })
         });
         </script>
 

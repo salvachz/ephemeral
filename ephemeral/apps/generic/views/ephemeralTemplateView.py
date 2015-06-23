@@ -8,7 +8,6 @@ class EphemeralTemplateView(TemplateView):
         kwargs['filtro'] = kwargs.get('filtro',{})
         kwargs['features_items'] = Produto.objects.filter(**kwargs['filtro'])
         search = request.GET.get('search','')
-        print 'minha search', search
         if search:
             kwargs['features_items'] = kwargs['features_items'].filter(nome__icontains=search)
             kwargs['search'] = search
