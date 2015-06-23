@@ -56,8 +56,16 @@
 						{% endfor %}
 						<tr>
 							<td colspan="6">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="pagform" value="boleto">
 								<button class="btn" type="submit">Pagar com Boleto</button>
+							</form>
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="pagform" value="cartao">
 								<button class="btn" style="float:right;" type="submit">Pagar com Cartao</button>
+							</form>
 							</td>
 						</tr>
 

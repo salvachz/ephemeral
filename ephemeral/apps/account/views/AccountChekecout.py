@@ -1,6 +1,7 @@
 from settings.settings import TEMPLATE_DIRS
-from apps.generic.models import Produto
+from apps.generic.models import Produto, Pedido,ProdutoPedido
 from django.shortcuts import render
+from django.db import transaction, IntegrityError
 
 from apps.generic.views import EphemeralTemplateView
 
@@ -17,16 +18,23 @@ class AccountCheckoutView(EphemeralTemplateView):
 
     def post(self, request, **kwargs):
         if 'cart' not in request.session:
-            request.session['cart'] = {}
-        product_id = str(request.POST.get('product',''))
-        product_qnt = int(request.POST.get('qnt',1))
-        if product_id and product_qnt:
-            if request.POST.get('from','') == 'wishlist':
-                if product_id in request.session['wishlist']:
-                    del(request.session['wishlist'][product_id])
-            if product_id not in request.session['cart']:
-                request.session['cart'][product_id] = product_qnt
-            else:
-                request.session['cart'][product_id] = int(request.session['cart'][product_id])+product_qnt
-        request.session.modfied = True
+            return self.get(request, **kwargs)
+        forma_pagamento = request.POST.get('pagform','boleto')
+        try:
+            with transaction.atomic():
+                pedido = Pedido(usuario=request.user,forma_pagamento=forma_pagamento)
+                pedido.save()
+                for product_id, qnt in request.session['cart'].items():
+                    pdt = Produto.objects.get(id=product_id)
+                    if pdt.quantidade < qnt:
+                        raise IntegrityError("Produto %s indisponivel nessa quantidade." % pdt.nome)
+                    pdt.quantidade = pdt.quantidade - qnt
+                    ProdutoPedido(pedido=pedido, produto=pdt,quantidade=qnt).save()
+                    pdt.save()
+                request.session['cart'] = {}
+        except IntegrityError as e:
+            print 'ERROR ON PEDIDO',e
+            erroMessage = e
+
+
         return self.get(request, **kwargs)
