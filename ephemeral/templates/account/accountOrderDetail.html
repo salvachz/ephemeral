@@ -1,0 +1,48 @@
+{% extends 'account/accountBase.html' %}
+{% block content %}
+{% if success %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 success">
+        <span>{{success}}</span>
+    </div>
+</div>
+{% endif %}
+<div class="row">
+    <div class="col-md-7 col-md-offset-3" id="cart_items">
+        <table class="table table-condensed" id"cart-table">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description"></td>
+                            <td class="quantity">Quantity</td>
+                        </tr>
+                    </thead>
+                    <tbody id="table-data">
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href=""><img src="/{{order.produto.image.url}}" alt=""></a>
+                            </td>
+                            <td>
+                                <h4><a href="">{{order.produto.nome}}</a></h4>
+                                <p class="pdt-id" >Web ID: {{order.produto.id}}</p>
+                            </td>
+                            <td>
+                                <div class="cart_quantity_button">
+                                    
+                                    <h4>{{order.quantidade}}</h4>
+                                    
+                                </div>
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                        
+                    
+
+                        
+                    </tbody>
+                </table>
+    </div>
+</div>
+{% endblock content %}
