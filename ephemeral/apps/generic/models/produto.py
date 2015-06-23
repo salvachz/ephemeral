@@ -15,7 +15,7 @@ class Produto(models.Model):
     marca = models.ForeignKey('Marca', db_column='proMarId', null=True, blank=True)
     preco = models.DecimalField(db_column='proPreco', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     precoFor = models.DecimalField(db_column='precoFor', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
-    quantidade = models.CharField(db_column='proQnt', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    quantidade = models.IntegerField(db_column='proQnt', blank=True, null=True)
     image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     slug = models.SlugField(editable=False,blank=True)
 

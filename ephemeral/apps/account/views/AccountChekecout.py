@@ -8,7 +8,25 @@ class AccountCheckoutView(EphemeralTemplateView):
     template_name = "checkout.html"
 
     def get(self, request, **kwargs):
-        return super(AccountCheckoutView, self).get(request, **kwargs)
+        if 'cart' not in request.session:
+            request.session['cart'] = {}
+        items = request.session['cart']
+        kwargs['products'] = Produto.objects.filter(id__in=items.keys())
+        kwargs['cart'] = items
+        return EphemeralTemplateView.get(self, request, **kwargs)
 
     def post(self, request, **kwargs):
+        if 'cart' not in request.session:
+            request.session['cart'] = {}
+        product_id = str(request.POST.get('product',''))
+        product_qnt = int(request.POST.get('qnt',1))
+        if product_id and product_qnt:
+            if request.POST.get('from','') == 'wishlist':
+                if product_id in request.session['wishlist']:
+                    del(request.session['wishlist'][product_id])
+            if product_id not in request.session['cart']:
+                request.session['cart'][product_id] = product_qnt
+            else:
+                request.session['cart'][product_id] = int(request.session['cart'][product_id])+product_qnt
+        request.session.modfied = True
         return self.get(request, **kwargs)

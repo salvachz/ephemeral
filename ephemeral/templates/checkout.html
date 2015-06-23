@@ -43,23 +43,21 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									
-									<input class="cart_quantity_input" data-product="{{product.id}}" type="number" name="quantity[{{product.id}}]" value="{{cart|dictionary:product.id}}" min="1" max="99" required="true">
-									
+									<h4>{{cart|dictionary:product.id}}</h4>						
 								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">R${{cart|dictionary:product.id|multiply:product.preco}}</p>
 							</td>
 							<td class="cart_delete">
-								<a data-qnt="{{cart|dictionary:product.id}}" data-product="{{product.id}}" class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
+								<!--a data-qnt="{{cart|dictionary:product.id}}" data-product="{{product.id}}" class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a-->
 							</td>
 						</tr>
 						{% endfor %}
 						<tr>
 							<td colspan="6">
-								<button class="fa" style="margin:auto; display:block" type="submit"> Finalizar
-								</button>
+								<button class="btn" type="submit">Pagar com Boleto</button>
+								<button class="btn" style="float:right;" type="submit">Pagar com Cartao</button>
 							</td>
 						</tr>
 
