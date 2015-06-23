@@ -1,3 +1,5 @@
+{% load filterUrl %}
+{% setfilter filtro %}
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -75,16 +77,31 @@
 										<li><a href="/login/">Login</a></li> 
                                     </ul>
                                 </li> 
-								<li><a href="/contato/">Contato</a></li>
+								<li><a href="/fale-conosco/">Contato</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-3">
+						<form id="search-form" action="/produtos/" method="GET">
+						<input type="hidden" name="params" value="{{''|filter_url:''}}">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" name="search" value="{{search}}" placeholder="Busca"/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
+		<script type="text/javascript">
+		$().ready(function(){
+			$('#search-form').submit(function(e){
+				var params = this.params.value;
+				if(params.length)
+					params+='&search='+escape(this.search.value);
+				else
+					params='?search='+escape(this.search.value);
+				window.location = '/produtos/'+params;
+				e.preventDefault();
+			})
+		});
+		</script>
 	</header><!--/header-->

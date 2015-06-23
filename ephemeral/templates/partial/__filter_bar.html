@@ -5,7 +5,7 @@
     <div clas="col-md-12" style="padding:1em 0">
         <ul class="filter-list">
         {% for tipo,item in filtro.items %}
-            <li>{{ item.nome }}<a href="/{{''|filter_url:tipo}}">x</a></li>
+            <li>{{ item.nome }}<a href="/produtos/{{''|filter_url:tipo}}">x</a></li>
         {% endfor %}
         </ul>
     </div>

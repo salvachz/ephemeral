@@ -22,7 +22,11 @@ def filter_url(value, _type):
 
 def setfilter(_filter):
     global g_filter
-    g_filter = _filter
+    if not g_filter:
+        g_filter = _filter
+    else:
+        for k in _filter:
+        g_filter.update(k: _)
     return ''
 
 
