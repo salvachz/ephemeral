@@ -13,6 +13,9 @@ admin.site.register([
 	genericModels.Categoria,
 	genericModels.Marca,
     genericModels.Usuario,
+    genericModels.Fornecedor,
+    genericModels.Pedido,
+    genericModels.ProdutoPedido,
 ])
 admin.autodiscover()
 

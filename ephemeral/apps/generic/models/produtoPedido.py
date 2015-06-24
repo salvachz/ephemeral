@@ -10,4 +10,8 @@ class ProdutoPedido(models.Model):
 
     class Meta:
         db_table = 'ProdutoPedido'
+
+    def __unicode__(self):
+       return "%s-%s" % (self.pedido.usuario,self.pedido)
+
  
