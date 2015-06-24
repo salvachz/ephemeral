@@ -15,4 +15,7 @@ class Pedido(models.Model):
 
     class Meta:
         db_table = 'Pedido'
+
+    def __unicode__(self):
+        return "%s" % self.last_update
  
