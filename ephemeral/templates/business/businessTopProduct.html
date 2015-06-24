@@ -13,12 +13,12 @@
     </thead>
     <tbody id="topProduct">
     {% for topProduct in topProducts %}
-        <tr>
-            <td>{{topProduct.produto.nome}}</td>
+        <tr class="text-center">
+            <td>{{topProduct.product.nome}}</td>
             <td>{{topProduct.orders}}</td>
             <td>{{topProduct.sumQnt}}</td>
         </tr>
-    {% enfor %}
+    {% endfor %}
     </tbody>
 </table>
 
