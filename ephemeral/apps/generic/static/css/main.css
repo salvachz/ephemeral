@@ -855,6 +855,11 @@ h2.title {
   position: relative;
 }
 
+.enc-img{
+  display:block;
+  height:20em;
+}
+
 .new, .sale {
   position: absolute;
   top: 0;

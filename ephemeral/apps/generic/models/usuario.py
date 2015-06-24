@@ -5,10 +5,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **kwargs):
         if not email:
-            raise ValueError('Users must have a valid email address.')
+            raise ValueError('Email invalido.')
 
         if not kwargs.get('name'):
-            raise ValueError('Users must have a valid name.')
+            raise ValueError('Nome invalido.')
 
         user = self.model(
             email=self.normalize_email(email), name=kwargs.get('name')

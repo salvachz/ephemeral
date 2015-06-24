@@ -11,7 +11,10 @@ register = template.Library()
 
 g_filter = {}
 def filter_url(value, _type):
+    global g_filter
     result = []
+    if not isinstance(g_filter,dict):
+        g_filter = {}
     c_filter = g_filter.copy()
     c_filter[_type] = value
     for k in c_filter:

@@ -7,7 +7,9 @@
 		 <a class="single-products" href="/produto/{{produto.slug}}">
 			<div class="single-products" href="/produto/{{produto.slug}}">
 				<div class="productinfo text-center">
-				<img src="/{{ produto.image.url }}" alt="">
+                                <div class="enc-img"> 
+	    				<img src="/{{ produto.image.url }}" alt="">
+				</div>
 					<h2>R${{produto.preco}}</h2>
 					<p>{{produto.nome}}</p>
 						<a onClick="add_cart_or_wish({{produto.id}},1,'/carrinho/')" class="btn btn-default add-to-cart">

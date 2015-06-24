@@ -13,7 +13,10 @@ class RegistryView(EphemeralTemplateView):
     def post(self, request, **kwargs):
         kwargs['registryForm'] = RegistryForm(request.POST)
         if kwargs['registryForm'].is_valid():
-            kwargs['registryForm'].save()
+            inst_model = kwargs['registryForm'].save()
+            inst_model.set_password(inst_model.password)
+            inst_model.save()
+            print 'vorta',inst_model
             return render(request, 'thanks.html')
         return EphemeralTemplateView.get(self, request, **kwargs)
 
