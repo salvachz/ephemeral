@@ -16,7 +16,7 @@ class ContactForm(forms.ModelForm):
 
         error_messages = {
             'assunto':default_error_message,
-            'mensagem':default_error_message,
+            'menssagem':default_error_message,
             'nome':default_error_message,
             'email':default_error_message,
         }
