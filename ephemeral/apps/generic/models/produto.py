@@ -12,6 +12,7 @@ class Produto(models.Model):
     nome = models.CharField(db_column='proNome', max_length=255)  # Field name made lowercase.       
     descricao = models.TextField(db_column='proDesc', blank=True, null=True)
     categoria = models.ForeignKey('Categoria', db_column='proCatId', null=True, blank=True)
+    fornecedor = models.ForeignKey('Fornecedor', db_column='proForId', null=True, blank=True)
     marca = models.ForeignKey('Marca', db_column='proMarId', null=True, blank=True)
     preco = models.DecimalField(db_column='proPreco', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     precoFor = models.DecimalField(db_column='precoFor', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.

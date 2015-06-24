@@ -1,0 +1,34 @@
+{% extends 'business/businessBase.html' %}
+{% load assets %}
+{% block content%}
+<script type="text/javascript">
+    $(document).ready(function(){
+        //dash cart conversion
+        $dashVisitDay = new Array();
+        $visitData =  new Array();
+        $visitTable = $("#visitTable");
+        for(var x=1;x<=31;x++){
+            $dashVisitDay.push(x);
+            var visit = Math.floor((Math.random() * 20) + 20);
+            $visitData.push(visit);
+            $visitTable.append("<tr class='text-center'><td>"+x+"</td><td>"+visit+"</td></tr>");
+
+        }
+    });
+
+</script>
+<script src="{% version 'js/businessVisit.js' %}"></script>
+<div id="visitGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<table class="table">
+    <thead>
+        <tr class='text-center'>
+            <td>Dia</td>
+            <td>Visitas</td>
+        </tr>
+    </thead>
+    <tbody id="visitTable">
+        <tr></tr>
+    </tbody>
+</table>
+
+{% endblock content %}

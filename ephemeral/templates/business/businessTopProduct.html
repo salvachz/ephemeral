@@ -1,0 +1,25 @@
+{% extends 'business/businessBase.html' %}
+{% load assets %}
+{% block content%}
+
+
+<table class="table">
+    <thead>
+        <tr class='text-center'>
+            <td>Produto</td>
+            <td>Pedidos</td>
+            <td>media de Quantidade/Pedido</td>
+        </tr>
+    </thead>
+    <tbody id="topProduct">
+    {% for order in orders %}
+        <tr>
+            <td>{{order.produto.nome}}</td>
+            <td>{{order.}}</td>
+            <td>{{order.}}</td>
+        </tr>
+    {% enfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
