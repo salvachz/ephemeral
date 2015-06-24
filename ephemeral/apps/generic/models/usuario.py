@@ -31,9 +31,14 @@ class UserManager(BaseUserManager):
 class Usuario(AbstractBaseUser):
     email = models.CharField(db_column='usrMail', max_length=255, unique=True)
     name = models.CharField(db_column='usrName', max_length=65)
+    sobrenome = models.CharField(db_column='usrSobrenome', max_length=100, null=True)
+    cpf = models.CharField(db_column='usrCpf', max_length=20, null=True)
+    telefone = models.CharField(db_column='usrTelefone', max_length=20, null=True)
     linguaguem = models.CharField(db_column='usrLanguage', choices=( (x,x) for x in ('Portugues','Inglish')), default='Portugues',max_length=30)
     status = models.CharField(db_column='usrStatus', choices=( (x,x) for x in ('Ativo','Inativo')), default='Ativo',max_length=30)
     last_access_ip = models.CharField(db_column='usrLastAccessIP', max_length=45)
+    nascimento = models.DateTimeField(db_column='usrNascimento',null=True)
+    sexo = models.CharField(db_column='usrSexo',choices=((x,x) for x in ['masculino','feminino']), max_length=20, default='masculino')
 
     is_admin = models.BooleanField(default=False)
 

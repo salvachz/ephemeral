@@ -18,6 +18,10 @@ class RegistryForm(forms.ModelForm):
         }
         error_messages = {
             'password':default_error_message,
-            'nome':default_error_message,
+            'name':default_error_message,
+            'sobrenome':default_error_message,
+            'cpf':default_error_message,
+            'telefone':default_error_message,
+            'nascimento':default_error_message,
             'email':default_error_message,
         }
