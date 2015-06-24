@@ -855,6 +855,11 @@ h2.title {
   position: relative;
 }
 
+.enc-img{
+  display:block;
+  height:20em;
+}
+
 .new, .sale {
   position: absolute;
   top: 0;
@@ -1479,7 +1484,7 @@ h2.title {
   margin-top: 23px;
 }
 
-.login-form form button, .signup-form form button, .contact-us-form form input {
+.login-form form button, .signup-form form button, .contact-us-form form button {
   background: #FE980F;
   border: medium none;
   border-radius: 0;
@@ -1491,6 +1496,10 @@ h2.title {
 
 .login-form label{
 
+}
+
+.contact-us-form form textarea{
+  margin-bottom: 5%;
 }
 
 
@@ -2518,6 +2527,45 @@ h2.title {
 
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
+}
+
+/* Ephemeral modification */
+.filter-list li{
+  list-style: none;
+  padding: 0.5em 0.3em;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.5em;
+  display: inline;
+  margin-left: 5px;
+}
+
+.filter-list li a{
+  margin-left: 0.3em;
+  padding: 0.3em;
+}
+
+
+
+/*SUCCESS*/
+.success{
+  text-align: center;
+  background: #0F0;
+  padding: 1% 0;
+  border-radius: 10px;
+}
+
+.my-account-form {
+  
+}
+
+.my-account-form input, .my-account-form label{
+  width: 100%;
+  display: inline-block;
+}
+
+.my-account-form button[type="submit"]{
+  display: block;
+  margin:3% auto;
 }
 
 

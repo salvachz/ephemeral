@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'apps.generic',
     'apps.account',
+    'apps.business',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,6 +64,7 @@ LOGIN_URL = '/login/'
 
 LOGIN_REQUIRED_URLS = (
     r'^/conta/*.*$',
+    r'^/business/*.*$',
 )
 
 ROOT_URLCONF = 'urls'

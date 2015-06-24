@@ -1,0 +1,38 @@
+{% extends 'business/businessBase.html' %}
+{% load assets %}
+{% block content%}
+<script type="text/javascript">
+    $(document).ready(function(){
+        //dash cart conversion
+        $dashCartConversion = new Array();
+        $cartData =  new Array();
+        $orderData = new Array();
+        $cartTable = $("#cartConversionTable");
+        for(var x=1;x<=31;x++){
+            $dashCartConversion.push(x);
+            var cart = Math.floor((Math.random() * 20) + 20)
+            $cartData.push(cart);
+            var order = Math.floor((Math.random() * 20) + 20);
+            $orderData.push(order);
+            $cartTable.append("<tr class='text-center'><td>"+x+"</td><td>"+cart+"</td><td>"+order+"</td></tr>");
+
+        }
+    });
+
+</script>
+<script src="{% version 'js/businessCartConversion.js' %}"></script>
+<div id="dashCartConversion" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<table class="table">
+    <thead>
+        <tr class='text-center'>
+            <td>Dia</td>
+            <td>Carrinhos</td>
+            <td>Compras</td>
+        </tr>
+    </thead>
+    <tbody id="cartConversionTable">
+        <tr></tr>
+    </tbody>
+</table>
+
+{% endblock content %}

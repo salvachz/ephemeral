@@ -1,0 +1,28 @@
+{% extends 'business/businessBase.html' %}
+{% load assets %}
+{% block content%}
+<script type="text/javascript">
+    $(document).ready(function(){
+        //dash cart conversion
+        $dashCartConversion = new Array();
+        $cartData =  new Array();
+        $orderData = new Array();
+        for(var x=1;x<=31;x++){
+            $dashCartConversion.push(x);
+            $cartData.push(Math.floor((Math.random() * 20) + 20));
+            $orderData.push(Math.floor((Math.random() * 20) + 20));
+        }
+
+        //pageViews
+        $dashPageViewsDays = new Array();
+        $dashPageViews = new Array();
+        for(var x=1;x<=31;x++){
+            $dashPageViewsDays.push(x);
+            $dashPageViews.push(Math.floor((Math.random() * 10) + 1));
+        }
+    })
+</script>
+<script src="{% version 'js/dashboardHighcharts.js' %}"></script>
+<div id="dashCartConversion" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="dashPageViews" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+{% endblock content %}

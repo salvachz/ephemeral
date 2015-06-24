@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load assets %}
+{% block body %}
+<body>
+<script src="{% version 'js/highcharts.js' %}"></script>
+<!--script src="http://code.highcharts.com/modules/exporting.js"></script-->
+
+    {% include "partial/__content_header.html" %}
+    
+    
+    <section>
+        <div class="container">
+            <div class="row">
+                
+                {% include 'partial/__business_sidebar.html' %}
+                
+                <div class="col-sm-9 padding-right container">
+                {% block content%}
+
+                {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% include 'partial/__footer.html' %}
+
+</body>
+{%endblock body %}
+</html>

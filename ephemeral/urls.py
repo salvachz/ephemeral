@@ -4,6 +4,7 @@ from django.contrib import admin
 from apps.generic import models as genericModels
 from apps.generic import views as genericViews
 from apps.account.urls import urlpatterns as accountUrls
+from apps.business.urls import urlpatterns as businessUrls
 from settings import settings
 # -*- coding: utf-8 -*-
 
@@ -18,6 +19,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^conta/', include(accountUrls)),
+    url(r'^business/', include(businessUrls)),
     url(r'^login/$', genericViews.LoginView.as_view(), name='login'),
     url(r'^registro/$', genericViews.RegistryView.as_view(), name='registry'),
     url(r'^carrinho/$', genericViews.CartView.as_view(), name='cart'),
