@@ -7,5 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', businessViews.BusinessHomeView.as_view(), name='business-home'),
     url(r'^dashboard/$', businessViews.BusinessDashboardView.as_view(), name='business-dashboard'),
     url(r'^conversao/$', businessViews.BusinessCartConversionView.as_view(), name='business-cartConversion'),
+    url(r'^visitas/$', businessViews.BusinessVisitView.as_view(), name='business-visit'),
+    url(r'^top-produtos/$', businessViews.BusinessTopProductView.as_view(), name='business-topProduct'),
 
 )
