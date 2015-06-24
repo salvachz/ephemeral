@@ -32,7 +32,7 @@
 					{% for product in products %}
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="/{{product.image.url}}" alt=""></a>
+								<a href=""><img src="/{{product.image.url}}" alt="" style="max-width:13em"></a>
 							</td>
 							<td class="cart_description">
 							<input type="hidden" name="product[]" value="{{product.id}}">

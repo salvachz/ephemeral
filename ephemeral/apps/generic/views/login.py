@@ -31,4 +31,8 @@ class LoginView(EphemeralTemplateView):
                     url = request.POST.get('togo',False)
                     togo = '/conta/' if not url else url
                     return HttpResponseRedirect(togo)
+            else:
+                kwargs['message'] = "Usuario/Senha nao encontrados"
+        else:
+            kwargs['message'] = "Usuario/Senha invalidos"
         return EphemeralTemplateView.get(self, request, **kwargs)
