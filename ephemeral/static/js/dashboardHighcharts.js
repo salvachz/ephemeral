@@ -10,20 +10,17 @@ $(function () {
             text: 'Conversao de compras nos ultimos 30 dias'
         },
         xAxis: {
+            categories: $dashCartConversion
+        },
+        yAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
                 month: '%e. %b',
                 year: '%b'
             },
             title: {
-                text: 'Data'
-            }
-        },
-        yAxis: {
-            title: {
                 text: 'Quantidade'
-            },
-            min: 0
+            }
         },
         plotOptions: {
             line: {
@@ -55,20 +52,17 @@ $(function () {
             text: 'quantidade de paginas visitadas nos ultimos 30 dias'
         },
         xAxis: {
+            categories: $dashPageViewsDays
+        },
+        yAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
                 month: '%e. %b',
                 year: '%b'
             },
             title: {
-                text: 'Data'
+                text: 'page views'
             }
-        },
-        yAxis: {
-            title: {
-                text: 'Quantidade'
-            },
-            min: 0
         },
         plotOptions: {
             line: {
