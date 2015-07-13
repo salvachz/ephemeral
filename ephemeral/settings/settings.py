@@ -53,8 +53,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.core.files.uploadhandler.MemoryFileUploadHandler',
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+    'django.middleware.locale.LocaleMiddleware',
     'apps.account.middleware.RequireLoginMiddleware',
 )
+
+LANGUAGE_CODE = 'pt-br'
 
 LOGIN_URL = '/login/'
 
