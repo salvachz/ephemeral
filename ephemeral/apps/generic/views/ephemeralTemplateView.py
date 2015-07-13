@@ -1,10 +1,16 @@
 from apps.generic.models import Produto, Categoria, Marca
 
 from django.views.generic import TemplateView
+from apps.business.models import Visita
+from datetime import datetime
 
 class EphemeralTemplateView(TemplateView):
 
     def get(self, request, **kwargs):
+        visita = Visita()
+        visita.usuario = request.user if not request.user.is_anonymous() else None
+        visita.data = datetime.now()
+        visita.save()
         kwargs['filtro'] = kwargs.get('filtro',{})
         kwargs['features_items'] = Produto.objects.filter(**kwargs['filtro'])
         search = request.GET.get('search','')
