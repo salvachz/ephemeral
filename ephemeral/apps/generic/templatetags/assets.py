@@ -3,6 +3,9 @@
 
 import os
 import re
+import simplejson
+from django.core.serializers import serialize
+from django.db.models.query import QuerySet
 from datetime import datetime
 from django import template
 from django.conf import settings
@@ -51,7 +54,14 @@ def multiply(value1, value2):
 def ortag(value1, value2):
     return value1 or value2
 
+def jsonify(object):
+    if isinstance(object, QuerySet):
+        return serialize('json', object)
+    return simplejson.dumps(object)
+
+
 register.simple_tag(version)
+register.filter('jsonify', jsonify)
 register.filter(aklogo)
 register.filter(dictionary)
 register.filter(multiply)

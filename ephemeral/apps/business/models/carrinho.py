@@ -14,3 +14,7 @@ class Carrinho(models.Model):
 
     def __unicode__(self):
         return "%s-%s" % (self.usuario, self.data)
+
+    @property
+    def data_str(self):
+        return self.data.strftime('%d/%m/%Y')
