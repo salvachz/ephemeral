@@ -12,7 +12,20 @@
     {% for key,value in car_to_go.items %}
         $cartData.push([Date.UTC({{key.year}}, {{key.month}}-1, {{key.day}}),{{value}} ]);
     {% endfor %}
-        $orderData = {{buy_to_go}};
+        $cartData = $cartData.sort(function(a,b){
+  // Turn your strings into dates, and then subtract them
+  // to get a value that is either negative, positive, or zero.
+  return new Date(b[0]) - new Date(a[0]);
+});
+        $orderData = []
+    {% for key,value in buy_to_go.items %}
+        $orderData.push([Date.UTC({{key.year}}, {{key.month}}-1, {{key.day}}),{{value}} ]);
+    {% endfor %}
+        $orderData = $orderData.sort(function(a,b){
+  // Turn your strings into dates, and then subtract them
+  // to get a value that is either negative, positive, or zero.
+  return new Date(b[0]) - new Date(a[0]);
+});
 {% endautoescape %}
 /*        for(var x=1;x<=31;x++){
             $dashCartConversion.push(x);
@@ -20,13 +33,24 @@
             $orderData.push(Math.floor((Math.random() * 20) + 20));
         }*/
 
-        //pageViews
+        $visitData = [];
+    {% for key,value in visit_to_go.items %}
+        $visitData.push([Date.UTC({{key.year}}, {{key.month}}-1, {{key.day}}),{{value}} ]);
+    {% endfor %}
+        $visitData = $visitData.sort(function(a,b){
+  // Turn your strings into dates, and then subtract them
+  // to get a value that is either negative, positive, or zero.
+  return new Date(b[0]) - new Date(a[0]);
+});
+
+
+/*        //pageViews
         $dashPageViewsDays = new Array();
         $dashPageViews = new Array();
         for(var x=1;x<=31;x++){
             $dashPageViewsDays.push(x);
             $dashPageViews.push(Math.floor((Math.random() * 10) + 1));
-        }
+        }*/
     })
 </script>
 <script src="{% version 'js/dashboardHighcharts.js' %}"></script>

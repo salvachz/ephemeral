@@ -80,7 +80,7 @@ $(function () {
         },
         series: [{
             name: 'page views',
-            data: $dashPageViews
+            data: $visitData
         }]
     });
 });
